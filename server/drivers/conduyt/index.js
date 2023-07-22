@@ -4,20 +4,18 @@ const { formatSchemaQueryResults } = require('../utils');
 const id = 'conduyt';
 const name = 'conduyt';
 
-function getConduytSchemaSql(catalog, schema) {
-  const schemaSql = schema ? `AND table_schema = '${schema}'` : '';
+function getConduytSchemaSql() {
   return `
     SELECT 
+      c.table_catalog,
       c.table_schema, 
       c.table_name, 
       c.column_name, 
       c.data_type
     FROM 
       ${catalog}.INFORMATION_SCHEMA.COLUMNS c
-    WHERE
-      table_catalog = '${catalog}'
-      ${schemaSql}
     ORDER BY 
+      c.table_catalog,
       c.table_schema, 
       c.table_name, 
       c.ordinal_position
@@ -77,7 +75,7 @@ function testConnection(connection) {
  * @param {*} connection
  */
 function getSchema(connection) {
-  const schemaSql = getConduytSchemaSql(connection.catalog, connection.schema);
+  const schemaSql = getConduytSchemaSql();
   return runQuery(schemaSql, connection).then((queryResult) =>
     formatSchemaQueryResults(queryResult)
   );
@@ -105,20 +103,10 @@ const fields = [
     label: 'User Email',
   },
   {
-    key: 'catalog',
-    formType: 'TEXT',
-    label: 'Catalog',
-  },
-  {
     key: 'sessionId',
     formType: 'TEXT',
     label: 'Session Id',
   },  
-  {
-    key: 'schema',
-    formType: 'TEXT',
-    label: 'Schema',
-  },
   {
     key: 'useHTTPS',
     formType: 'CHECKBOX',
