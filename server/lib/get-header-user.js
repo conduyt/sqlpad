@@ -1,7 +1,6 @@
 const _ = require('lodash');
 require('../typedefs');
 
-
 /**
  * Derive header user from request headers
  * @param {Req} req
