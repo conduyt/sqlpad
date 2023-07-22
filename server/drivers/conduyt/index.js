@@ -1,5 +1,4 @@
 const conduyt = require('./_conduyt.js');
-const appLog = require('../../lib/app-log');
 const { formatSchemaQueryResults } = require('../utils');
 
 const id = 'conduyt';
@@ -44,8 +43,6 @@ function runQuery(query, connection) {
     schema: connection.schema,
     sessionId: connection.sessionId,
   };
-  appLog.warn("runQuery connection = " + JSON.stringify(connection));
-  appLog.warn("runQuery config = " + JSON.stringify(config));
   return conduyt.send(config, query).then((result) => {
     if (!result) {
       throw new Error('No result returned');
@@ -62,7 +59,6 @@ function runQuery(query, connection) {
       }
       rows.push(row);
     }
-    appLog.warn("runQuery rows = " + JSON.stringify(rows));
     return { rows, incomplete };
   });
 }

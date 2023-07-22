@@ -1,5 +1,4 @@
 const _ = require('lodash');
-const appLog = require('./app-log');
 require('../typedefs');
 
 
@@ -27,7 +26,6 @@ function getHeaderUser(req) {
       }
     });
 
-  appLog.warn("getHeaderUser = " + JSON.stringify(headerUser));
   if (Object.keys(headerUser).length > 0) {
     return headerUser;
   }
