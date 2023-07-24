@@ -21,7 +21,6 @@ function createConfig(connection) {
 
 
 function formatResult(result, connection) {
-  appLog.warn("format result = " + JSON.stringify(result));
   let incomplete = false;
   const rows = [];  
   if (!result) {
@@ -70,16 +69,13 @@ function testConnection(connection) {
  * @param {*} connection
  */
 function getSchema(connection) {
-  appLog.warn("calling getSchema");
   try {
     const config = createConfig(connection);
-    appLog.warn("gs1");
     return conduyt.schemaQuery(config)
       .then((result) => { return formatResult(result, connection); })
       .then((result) => { return formatSchemaQueryResults(result); }
     );
   } catch (exp) {
-    appLog.warn("caught exception = " + JSON.stringify(exp));
     return {}
   }
 }

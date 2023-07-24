@@ -29,7 +29,6 @@ function getHeaders(config) {
 
 
 function schemaQuery(config) {
-  appLog.warn("called schemaQuery");
   if (!config.url) {
     return Promise.reject(new Error('config.url is required'));
   }
