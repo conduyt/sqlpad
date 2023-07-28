@@ -9,9 +9,7 @@ const appLog = require('../lib/app-log');
  * @param {Res} res
  */
 async function getApp(req, res) {
-  const { config, user } = req;
-
-  appLog.warn("getApp user = " + JSON.stringify(user));
+  const { config } = req;
 
   const currentUser =
     req.isAuthenticated() && req.user

@@ -9,7 +9,6 @@ import { api } from '../utilities/api';
 import useAppContext from '../utilities/use-app-context';
 import AboutModal from './AboutModal';
 
-
 function AppMenu() {
   const { currentUser } = useAppContext();
   const [showAbout, setShowAbout] = useState(false);

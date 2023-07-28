@@ -8,9 +8,7 @@ const wrap = require('../lib/wrap');
  * @param {Res} res
  */
 async function handleSignout(req, res) {
-  const { user, appLog, webhooks, params } = req;
-  appLog.warn("handleSignout");
-  appLog.warn("user id = " + JSON.stringify(params.userEmail));
+  const { appLog, webhooks, params } = req;
   if (!req.session) {
     return res.utils.data('signout', {});
   }

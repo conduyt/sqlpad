@@ -20,7 +20,6 @@ function connectionSummary(connection) {
   };
 }
 
-
 class Webhooks {
   /**
    *
@@ -230,13 +229,10 @@ class Webhooks {
   }
 
   async signout(userEmail) {
-    appLog.warn("signout webhook");
     const url = this.hookEnabledUrl('webhookSignoutUrl');
     if (!url) {
-      appLog.warn("no signout webhook configured")
       return;
     }
-    appLog.warn("signout hook = " + url);
 
     try {
       const body = {
