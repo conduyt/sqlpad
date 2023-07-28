@@ -3,7 +3,7 @@ const appLog = require('./app-log');
 
 function userSummary(user) {
   if (!user) {
-    return;
+    return {};
   }
   const { id, name, email, role, createdAt } = user;
   return { id, name, email, role, createdAt };
@@ -11,7 +11,7 @@ function userSummary(user) {
 
 function connectionSummary(connection) {
   if (!connection) {
-    return;
+    return {};
   }
   return {
     id: connection.id,
@@ -227,6 +227,23 @@ class Webhooks {
       appLog.error(error, 'error sending statement cancelled webhook');
     }
   }
+
+  async signout(userEmail) {
+    const url = this.hookEnabledUrl('webhookSignoutUrl');
+    if (!url) {
+      return;
+    }
+
+    try {
+      const body = {
+        userEmail: userEmail,
+      };
+
+      return this.send('signout', url, body);
+    } catch (error) {
+      appLog.error(error, 'error sending signout webhook');
+    }
+  }  
 }
 
 module.exports = Webhooks;

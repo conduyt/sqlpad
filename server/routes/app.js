@@ -2,6 +2,7 @@ require('../typedefs');
 const router = require('express').Router();
 const packageJson = require('../package.json');
 const wrap = require('../lib/wrap');
+const appLog = require('../lib/app-log');
 
 /**
  * @param {Req} req
